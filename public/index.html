@@ -4,7 +4,21 @@
     <title></title>
 </head>
 <body>
-    <script src="/js/vue.js"></script>
+    <div id="titlelogo">
+        <h1>Title Logo</h1>
+    </div>
+    <div id="main">
+        <ul v-if="pagedata.length > 0">
+            <li v-for="image in pagedata"><img v-bind:src="image.image">{{image.title}}</li>
+        </ul>
+
+
+
+    </div>
     <script src="/js/axios.min.js"></script>
+    <script src="/js/vue.js"></script>
+    <!-- Swap to a smaller version of vue if you deploy the site -->
+    <script src="/js/script.js"></script>
+
 </body>
 </html>
