@@ -1,0 +1,31 @@
+h1 {
+    text-align: center;
+}
+#main{
+
+}
+#imagelayout {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-auto-rows: 200px;
+    border: 2px solid black;
+    /* max-width: 80%; */
+    /* grid-gap: 20px; */
+    /* margin: 0 auto; */
+    /* grid-template-rows: auto; */
+
+
+
+    /* repeat(3, minmax(33%, 1fr)); */
+}
+
+
+#singleimages {
+    /* display: inline; */
+    height: 100%;
+    width: auto;
+}
+
+
+/* minmax */

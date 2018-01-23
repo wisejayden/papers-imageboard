@@ -1,16 +1,29 @@
 <!doctype html>
 <html>
 <head>
-    <title></title>
+    <title>|papers|</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
     <div id="titlelogo">
-        <h1>Title Logo</h1>
+        <h1>|papers|</h1>
     </div>
     <div id="main">
-        <ul v-if="pagedata.length > 0">
-            <li v-for="image in pagedata"><img v-bind:src="image.image">{{image.title}}</li>
-        </ul>
+        <div>
+            <input v-model="formStuff.title" type="text" placeholder="title">
+            <input v-model="formStuff.description" type="text" placeholder="description">
+            <input v-model="formStuff.username" type="text" placeholder="username">
+            <input type="file" name="file" v-on:change="chooseFile">
+            <button type="button" @click="uploadFile">Submit</button>
+
+
+        </div>
+
+        <div id="imagelayout">
+                <div v-for="image in pagedata">
+                    <img id ="singleimages" v-bind:src="image.image">{{image.title}}
+                </div>
+        </div>
 
 
 
@@ -22,3 +35,21 @@
 
 </body>
 </html>
+
+
+<!-- v-models
+v-on:change is in methods.
+this.forumstuff.file = e.target.files[0]
+
+axios.post inside upload function -->
+
+<!--
+
+uploadtoS3, req, res, next
+s3 request
+read stream
+was successful
+
+
+fs.unlink(file.path, () => 0);
+// to remove file after uploading -->
