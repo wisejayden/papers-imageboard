@@ -33,19 +33,7 @@
          <!-- props will always be assigned using v-bind -->
 
 
-        <script id="modal-component" type="x-template">
-            <div class="modalwindow">
-                <div v-if="currentImage">
 
-                    <div id="modaldiv">
-                        <img id="modalimage" v-bind:src="currentImage.image">
-                        <!-- // <strong id="modaltitle">{{currentImage}}</strong>
-
-                    </div>
-
-                </div>
-            </div>
-        </script>
 
 
 
@@ -54,6 +42,23 @@
 
 
     </div>
+
+    <script id="modal-component" type="x-template">
+        <div class="modalwindow">
+            <div v-if="currentImage">
+
+                <div id="modaldiv">
+                    <img id="modalimage" v-bind:src="currentImage.image">
+                <strong id="modaltitle">{{currentImage.title}}</strong>
+
+                </div>
+
+            </div>
+        </div>
+    </script>
+
+
+
     <script src="/js/axios.min.js"></script>
     <script src="/js/vue.js"></script>
     <!-- Swap to a smaller version of vue if you deploy the site -->
