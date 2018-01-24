@@ -20,9 +20,11 @@
         </div>
 
         <div id="imagelayout">
-                <div v-for="image in pagedata">
-                    <img id ="singleimages" v-bind:src="image.image">{{image.title}}
+                <div id="imagediv" v-for="image in pagedata">
+                    <img id ="singleimages" v-bind:src="image.image">
+                    <strong id="imagetext">{{image.title}}</strong>
                 </div>
+                <!-- <big-image -->
         </div>
 
 
