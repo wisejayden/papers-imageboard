@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+
+
+        <div id="main">
+            <ul>
+                <li v-for="city in cities">
+                    <strong>Component for {{city.name}}:</strong>
+                    <individual-city v-bind:id="city.id"
+                          v-bind:name="city.name"
+                          v-bind:country="city.country"
+                          v-on:changed="updateCityName"></individual-city>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+
+
+        <script type="example.js">
+
+        </script>
+    </body>
+</html>

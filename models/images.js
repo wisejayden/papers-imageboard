@@ -28,5 +28,19 @@ module.exports.saveSubmission = function(filename, username, title, description)
         });
 };
 
+module.exports.findImageData = function(id) {
+    return db
+        .query(
+            `SELECT * FROM images WHERE id = ($1)`,
+            [id]
+        )
+        .then((results) => {
+            console.log("Successfully found image data, sending back results");
+            return results;
+        })
+        .catch(() => {
+            console.log("Couldn't find image data");
+        });
+};
 
 // newImages(picme.jpg, jayden, me, picofme)

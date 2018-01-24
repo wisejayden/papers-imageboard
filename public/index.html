@@ -21,12 +21,36 @@
 
         <div id="imagelayout">
                 <div id="imagediv" v-for="image in pagedata">
-                    <img id ="singleimages" v-bind:src="image.image">
+                    <img id ="singleimages" v-bind:src="image.image" v-on:click="currentlySelected(image.id)">
                     <strong id="imagetext">{{image.title}}</strong>
                 </div>
-                <!-- <big-image -->
         </div>
 
+        <big-image v-if="selectedImage"
+         v-bind:selected-image="selectedImage" v-on:changed="selectedImage=null"></big-image>
+
+         <!-- HTML is not case sensitive, swap to kebab casing -->
+         <!-- props will always be assigned using v-bind -->
+
+
+        <script id="modal-component" type="x-template">
+            <div class="modalwindow">
+                <div v-if="currentImage">
+
+                    <div id="modaldiv">
+                        <img id="modalimage" v-bind:src="currentImage.image">
+                        <!-- // <strong id="modaltitle">{{currentImage}}</strong>
+
+                    </div>
+
+                </div>
+            </div>
+        </script>
+
+
+
+
+        <div class="examplemodalbackground"></div>
 
 
     </div>
@@ -37,6 +61,25 @@
 
 </body>
 </html>
+
+
+<!-- HTML is not case sensitive, swap to kebab casing -->
+<!-- props will always be assigned using v-bind -->
+
+
+<!-- // <strong id="modaltitle">{{currentImage}}</strong>
+// <p id="modaldescription">{{current-image.description}}</p>
+// <p id ="modaluser">Uploaded by{{current-image.username}} on {{current-imaged.created_at}}</p> -->
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- v-models

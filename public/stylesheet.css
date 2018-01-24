@@ -27,3 +27,25 @@ h1 {
     display: block;
     margin: 0 auto;
 }
+
+
+
+
+.modalwindow {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left:10%;
+    background: rgb(247, 47, 107);
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.modaldiv {
+    width: 100%;
+}
+.modalimage {
+    width: 90%;
+    max-height: 80%;
+}

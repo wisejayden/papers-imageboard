@@ -11,6 +11,7 @@ var middleware = require('./middleware.js');
 var uploadToS3 = middleware.uploadToS3;
 var saveSubmission = images.saveSubmission;
 var images = require('./models/images.js');
+var findImageData = images.findImageData;
 
 
 
@@ -47,6 +48,22 @@ app.get('/getimages', function (req, res) {
             imageData: results.rows
         });
     });
+});
+
+app.get('/getimages/:id', function (req, res) {
+    console.log(req.params);
+    findImageData(req.params.id).then((results) => {
+        results.rows[0].image = hostWebsite + results.rows[0].image;
+        res.json({
+            modalImageData: results.rows
+        });
+    })
+        .catch(() => {
+            res.json({
+                success: false
+            });
+        });
+
 });
 
 app.post('/upload-image', uploader.single('file'), uploadToS3,  function(req, res) {

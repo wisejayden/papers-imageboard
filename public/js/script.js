@@ -1,8 +1,35 @@
+Vue.component('big-image', {
+    props: ['selectedImage'],
+    data: function() {
+        return {
+            currentImage: null
+        };
+    },
+    methods: {
+        closeModal: function() {
+            this.$emit('changed');
+        }
+    },
+    template: '#modal-component',
+    mounted: function() {
+        var self = this;
+        axios.get('/getimages/' + this.selectedImage).then(function(response) {
+            self.currentImage = response.data.modalImageData[0];
+
+            console.log("BLAH BLAH BLAH", self.currentImage);
+
+            console.log("Check if prop has updated", this.selectedImage);
+        });
+    }
+});
+
+
 
 var app = new Vue({
     el: '#main',
     data: {
         pagedata: '',
+        selectedImage: null,
         formStuff: {
             title: '',
             description: '',
@@ -19,9 +46,6 @@ var app = new Vue({
             formData.append('title', this.formStuff.title);
             formData.append('description', this.formStuff.description);
             formData.append('username', this.formStuff.username);
-
-
-//push, unshift
 
             axios.post('/upload-image', formData)
                 .then(result => {
@@ -45,7 +69,13 @@ var app = new Vue({
             console.log("Choose file working");
             this.formStuff.file = e.target.files[0];
 
-        }
+        },
+        currentlySelected: function(id) {
+            this.selectedImage = id;
+            console.log("Check this__________", this.selectedImage);
+
+
+        },
     },
     mounted: function() {
         axios.get('/getimages').then(function(response) {
