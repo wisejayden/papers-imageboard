@@ -10,7 +10,7 @@
     </div>
     <div id="main">
         <div>
-            <input v-model="formStuff.title" type="text" placeholder="title">
+            <input v-model= "formStuff.title" type="text" placeholder="title">
             <input v-model="formStuff.description" type="text" placeholder="description">
             <input v-model="formStuff.username" type="text" placeholder="username">
             <input type="file" name="file" v-on:change="chooseFile">
@@ -27,17 +27,8 @@
         </div>
 
         <big-image v-if="selectedImage"
-         v-bind:selected-image="selectedImage" v-on:changed="selectedImage=null"></big-image>
+         v-bind:selected-image="selectedImage" v-on:changed="selectedImage=null" v-on:commentsubmit="formStuff"></big-image>
 
-
-
-
-
-
-
-
-
-        <div class="examplemodalbackground"></div>
 
 
     </div>
@@ -49,13 +40,34 @@
 
                 <div id="modaldiv">
                     <img id="modalimage" v-bind:src="currentImage.image">
+
+
+
                     <div id="modalform">
+                        <p>Add a Comment!</p>
+                        <input v-model="commentData.comment" type="text" placeholder="Comment">
+                        <input v-model="commentData.username" type="text" placeholder="Username">
+                        <button type="button" @click="submitComment">Submit</button>
+                    </div>
+
+
+
 
                     <div id="modaltext">
                         <strong id="modaltitle">{{currentImage.title}}</strong>
                         <p id="modaldescription">{{currentImage.description}}</p>
                         <p id ="modaluser">Uploaded by {{currentImage.username}} on {{currentImage.created_at}}</p>
                     </div>
+
+
+                    <div id="modalcommentscontainer">
+                        <div id="modalcomments" v-for="comments in commentData">
+                            <div id="everycomment">{{comments.comment}}</div>
+                            <div id="everyusername">{{comments.username}}</div>
+                        </div>
+
+                    </div>
+
 
 
                 </div>

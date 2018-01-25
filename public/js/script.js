@@ -2,26 +2,70 @@ Vue.component('big-image', {
     props: ['selectedImage'],
     data: function() {
         return {
-            currentImage: null
+            currentImage: null,
+            commentData: {
+                comment: '',
+                username: ''
+            }
         };
     },
     methods: {
         closeModal: function() {
-            console.log("wassup");
             this.$emit('changed');
         },
+        submitComment: function() {
+            console.log("Comment submitted");
+            axios.post('/submit-comment', {
+                'comment': this.commentData.comment,
+                'username': this.commentData.username,
+                'id': this.currentImage.id
+            })
+                .then((response) => {
+
+                    //append data!!!
+                    console.log("/submit-comment");
+                    if(response.data.success == true) {
+
+                        console.log("Checking for typeof object on upload-image", this.commentData)
+
+                        this.commentData = response.data.reverse();
+
+                        // console.log("Checking for current commentData", this.commentData)
+                        // this.commentData.push({
+                        //     comment: results.data.comment,
+                        //     username: results.data.username
+                        // });
+                        // console.log("Checking for current commentData second", this.commentData)
+
+                        // app.pagedata.unshift({
+                        //     // created_at:,
+                        //     description: result.data.description,
+                        //     // id: ,
+                        //     image: result.data.filename,
+                        //     title: result.data.title,
+                        //     username: result.data.username
+                        // });
+                    }
+
+                });
+        }
     },
     template: '#modal-component',
     mounted: function() {
         var self = this;
         axios.get('/getimages/' + this.selectedImage).then(function(response) {
-            self.currentImage = response.data.modalImageData[0];
-
-            console.log("BLAH BLAH BLAH", self.currentImage);
-
-            console.log("Check if prop has updated", this.selectedImage);
+            console.log("HIIIII");
+            console.log("CHECK THE RESPONSE DATA", response.data);
+            // self.currentImage = response.data.modalImageData[0];
         });
+        // axios.get('/get-comments', this.selectedImage)
+        //     .then(function(response) {
+        //         console.log(response.data)
+        //     // self.commentData = response.data.reverse();
+        //
+        //     });
     }
+
 });
 
 
@@ -35,7 +79,9 @@ var app = new Vue({
             title: '',
             description: '',
             username: '',
-            file: null
+            file: null,
+            comment: null,
+            commentUsername: null
         }
     },
     methods: {
@@ -51,6 +97,7 @@ var app = new Vue({
             axios.post('/upload-image', formData)
                 .then(result => {
                     if(result.data.success == true) {
+                        console.log("Checking for typeof object on upload-image", app.pagedata)
                         app.pagedata.unshift({
                             // created_at:,
                             description: result.data.description,

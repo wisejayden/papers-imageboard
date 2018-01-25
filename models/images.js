@@ -43,4 +43,33 @@ module.exports.findImageData = function(id) {
         });
 };
 
+module.exports.addComment = function(comment, username, id) {
+    return db
+        .query(
+            `INSERT INTO comments (comment, username, photo_id) VALUES ($1, $2, $3)`,
+            [comment, username, id]
+        )
+        .then((results) => {
+            console.log("Successfully add comment into table");
+            return results;
+        })
+        .catch(() => {
+            console.log("no luck with adding comment into table");
+        });
+};
+
+module.exports.getComments = function(id) {
+    return db
+        .query(
+            `SELECT * FROM comments WHERE photo_id = ($1)`,
+            [id]
+        )
+        .then((results) => {
+            console.log("Got comments");
+            return results;
+        })
+        .catch(() => {
+            console.log("error getting comments");
+        });
+};
 // newImages(picme.jpg, jayden, me, picofme)
