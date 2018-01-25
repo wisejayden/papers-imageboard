@@ -42,10 +42,30 @@ h1 {
     border: 2px solid black;
 }
 
-.modaldiv {
-    width: 100%;
+#closemodal {
+    position: absolute;
+    left: 96%;
+    background: rgba(255, 255, 255, 0.6);
+    border: solid black 2px;
+    padding: 5px;
 }
-.modalimage {
-    width: 90%;
-    max-height: 80%;
+#modaldiv {
+    width: 60%;
+    border: solid black 2px;
+    margin-left: 20%;
+    margin-top: 10%;
+    padding: 5px;
+    background: rgb(245, 132, 166);
+
+
+
+
+}
+#modalimage {
+    width: 100%;
+    border: 1px solid black;
+}
+#modaltext {
+    padding-top: 10px;
+    text-align: center;
 }

@@ -7,8 +7,9 @@ Vue.component('big-image', {
     },
     methods: {
         closeModal: function() {
+            console.log("wassup");
             this.$emit('changed');
-        }
+        },
     },
     template: '#modal-component',
     mounted: function() {

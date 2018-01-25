@@ -29,8 +29,7 @@
         <big-image v-if="selectedImage"
          v-bind:selected-image="selectedImage" v-on:changed="selectedImage=null"></big-image>
 
-         <!-- HTML is not case sensitive, swap to kebab casing -->
-         <!-- props will always be assigned using v-bind -->
+
 
 
 
@@ -45,11 +44,19 @@
 
     <script id="modal-component" type="x-template">
         <div class="modalwindow">
+            <div @click="closeModal" id="closemodal">X</div>
             <div v-if="currentImage">
 
                 <div id="modaldiv">
                     <img id="modalimage" v-bind:src="currentImage.image">
-                <strong id="modaltitle">{{currentImage.title}}</strong>
+                    <div id="modalform">
+
+                    <div id="modaltext">
+                        <strong id="modaltitle">{{currentImage.title}}</strong>
+                        <p id="modaldescription">{{currentImage.description}}</p>
+                        <p id ="modaluser">Uploaded by {{currentImage.username}} on {{currentImage.created_at}}</p>
+                    </div>
+
 
                 </div>
 
@@ -72,9 +79,6 @@
 <!-- props will always be assigned using v-bind -->
 
 
-<!-- // <strong id="modaltitle">{{currentImage}}</strong>
-// <p id="modaldescription">{{current-image.description}}</p>
-// <p id ="modaluser">Uploaded by{{current-image.username}} on {{current-imaged.created_at}}</p> -->
 
 
 
