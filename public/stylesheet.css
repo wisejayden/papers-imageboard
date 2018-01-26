@@ -10,7 +10,7 @@
     font-family: 'coco';
     src: url('/fonts/coco-bold-webfont.woff2') format('woff2'),
         url('/fonts/coco-bold-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
 
 }
@@ -35,11 +35,12 @@
 
 h1 {
     text-align: center;
-    font-family: "simplifica";
+    font-family: "coco";
+    font-size: 3em;
 
 }
 body {
-    background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b54.png');
+    background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b31.png');
 }
 
 /* Best of
@@ -59,6 +60,7 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
     justify-content: space-around;
     align-items: center;
     align-content: space-around;
+    padding-top: 100px;
 }
 
 /* flex-direction column
@@ -69,8 +71,13 @@ height: 100vw; */
 #imagediv{
     background-color: white;
     width: 30%;
-    border: 2px solid black;
-    padding: 5px;
+    border: 1px solid rgb(193, 186, 187);
+    padding: 10px 10px 30px 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+#imagediv:nth-child(even) {
+    background-color: black;
 }
 
 #singleimages{
