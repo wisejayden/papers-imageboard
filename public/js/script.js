@@ -9,10 +9,19 @@ Vue.component('big-image', {
             }
         };
     },
+
+
     methods: {
         //On click, emits change to main, setting selectedImage ('id'), to null, hence closing the window.
         closeModal: function() {
             this.$emit('changed');
+        },
+        stopPropagation: function(e) {
+            e.stopPropagation(e);
+        },
+
+        getComments: function() {
+
         },
         //Inside modal, make a post request to add comment data and then append to previous comments
         submitComment: function() {
@@ -90,8 +99,14 @@ var app = new Vue({
             this.selectedImage = id;
         },
     },
-    //When main is mounted, request images.
     mounted: function() {
+        //Event listener to close modal on 'escape'
+        document.addEventListener('keydown', function(e) {
+            console.log(e.keyCode);
+            if (e.keyCode === 27) {
+                app.selectedImage = null;
+            }
+        });
         axios.get('/getimages').then(function(response) {
             app.pagedata = response.data.imageData.reverse();
         });

@@ -34,44 +34,47 @@
     </div>
 
     <script id="modal-component" type="x-template">
-        <div class="modalwindow">
-            <div @click="closeModal" id="closemodal">X</div>
-            <div v-if="currentImage">
+    <div id="modalback" @click="closeModal">
+            <div class="modalwindow" @click="stopPropagation">
+                <div @click="closeModal" id="closemodal">X</div>
+                <div v-if="currentImage">
 
-                <div id="modaldiv">
-                    <img id="modalimage" v-bind:src="currentImage.image">
-
-
-
-                    <div id="modalform">
-                        <p>Add a Comment!</p>
-                        <input v-model="commentData.comment" type="text" placeholder="Comment">
-                        <input v-model="commentData.username" type="text" placeholder="Username">
-                        <button type="button" @click="submitComment">Submit</button>
-                    </div>
+                    <div id="modaldiv">
+                        <img id="modalimage" v-bind:src="currentImage.image">
 
 
 
-
-                    <div id="modaltext">
-                        <strong id="modaltitle">{{currentImage.title}}</strong>
-                        <p id="modaldescription">{{currentImage.description}}</p>
-                        <p id ="modaluser">Uploaded by {{currentImage.username}} on {{currentImage.created_at}}</p>
-                    </div>
-
-
-                    <div id="modalcommentscontainer">
-                        <div id="modalcomments" v-for="comments in commentData">
-                            <div id="everycomment">{{comments.comment}}</div>
-                            <div id="everyusername">{{comments.username}}</div>
+                        <div id="modalform">
+                            <p>Add a Comment!</p>
+                            <input v-model="commentData.comment" type="text" placeholder="Comment">
+                            <input v-model="commentData.username" type="text" placeholder="Username">
+                            <button type="button" @click="submitComment">Submit</button>
                         </div>
 
+
+
+
+                        <div id="modaltext">
+                            <strong id="modaltitle">{{currentImage.title}}</strong>
+                            <p id="modaldescription">{{currentImage.description}}</p>
+                            <p id ="modaluser">Uploaded by {{currentImage.username}} on {{currentImage.created_at}}</p>
+                        </div>
+
+
+                        
+                        <div id="modalcommentscontainer">
+                            <div id="modalcomments" v-for="comments in commentData">
+                                <div id="everycomment">{{comments.comment}}</div>
+                                <div id="everyusername">{{comments.username}}</div>
+                            </div>
+
+                        </div>
+
+
+
                     </div>
 
-
-
                 </div>
-
             </div>
         </div>
     </script>
@@ -89,17 +92,6 @@
 
 <!-- HTML is not case sensitive, swap to kebab casing -->
 <!-- props will always be assigned using v-bind -->
-
-
-
-
-
-
-
-
-
-
-
 
 
 
