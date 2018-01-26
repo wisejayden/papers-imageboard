@@ -21,6 +21,8 @@ var getComments = images.getComments;
 app.use(bodyParser.json());
 
 
+
+//Save uploaded data to harddrive
 var diskStorage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, __dirname + '/uploads');
@@ -31,7 +33,6 @@ var diskStorage = multer.diskStorage({
         });
     }
 });
-
 var uploader = multer({
     storage: diskStorage,
     limits: {
@@ -44,6 +45,7 @@ var uploader = multer({
 app.use(express.static('./public'));
 
 
+//Loop through image data, adding base url to the extension and then return data
 app.get('/getimages', function (req, res) {
     getImages().then((results) => {
         for (var i = 0; i < results.rows.length; i++) {
@@ -55,19 +57,16 @@ app.get('/getimages', function (req, res) {
     });
 });
 
+//Get comment data and image data by id and then return to modal
 app.get('/getimages/:id', function (req, res) {
-    console.log("CHECK req.params", req.params);
     getComments(req.params)
     var id = req.params.id;
     getComments(id)
         .then((results) => {
             var commentData = results.rows;
-            console.log("getComments results", commentData)
             findImageData(id)
                 .then((results) => {
                     results.rows[0].image = hostWebsite + results.rows[0].image;
-                    console.log("Checking this", results.rows);
-                    console.log("commentData", commentData);
 
                     res.json({
                         success: true,
@@ -84,20 +83,16 @@ app.get('/getimages/:id', function (req, res) {
         .catch(() => {
             console.log("got comments catch");
         })
-
-
 });
 
+
+//Save uploaded image to harddrive, then upload to website, once successful saveSubmission to database and return data to the client.
 app.post('/upload-image', uploader.single('file'), uploadToS3,  function(req, res) {
-    console.log("Test uploading image req.body", req.body);
     // If nothing went wrong the file is already in the uploads directory
     if (req.file) {
         console.log('Success!');
-
-
         saveSubmission(req.file.filename, req.body.username, req.body.title, req.body.description)
             .then(() => {
-                console.log("Savesubmission function worked", req.body);
                 res.json({
                     success: true,
                     filename: hostWebsite + req.file.filename,
@@ -114,23 +109,8 @@ app.post('/upload-image', uploader.single('file'), uploadToS3,  function(req, re
     }
 });
 
-app.get('/get-comments', function(req, res) {
-    console.log("get comments", req.body);
-    getComments(req.body.id)
-        .then((results) => {
-            console.log("Got comments");
-
-            res.json({
-                success: true,
-                results:results.rows
-            });
-        });
-});
-
 
 app.post('/submit-comment', function(req, res) {
-    console.log('post request working for submitting comment');
-    console.log("Testing uploading comment req.body", req.body);
     addComment(req.body.comment, req.body.username, req.body.id)
         .then(() => {
             res.json({

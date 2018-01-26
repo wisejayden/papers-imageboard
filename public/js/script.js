@@ -10,9 +10,11 @@ Vue.component('big-image', {
         };
     },
     methods: {
+        //On click, emits change to main, setting selectedImage ('id'), to null, hence closing the window.
         closeModal: function() {
             this.$emit('changed');
         },
+        //Inside modal, make a post request to add comment data and then append to previous comments
         submitComment: function() {
             console.log("Comment submitted");
             axios.post('/submit-comment', {
@@ -21,41 +23,25 @@ Vue.component('big-image', {
                 'id': this.currentImage.id
             })
                 .then((response) => {
-
-                    //append data!!!
                     console.log("/submit-comment");
                     if(response.data.success == true) {
-                        console.log("Check submitted comment data", response.data)
-
-
-
                         this.commentData.unshift({
                             comment: response.data.comment,
                             username: response.data.username
                         });
-                        console.log("Checking for current commentData second", this.commentData);
                     }
-
                 });
         }
     },
     template: '#modal-component',
+    //When component is mounted, and modal is enlarged,  get image and comment data by id, then add to components data field.
     mounted: function() {
         var self = this;
         axios.get('/getimages/' + this.selectedImage).then(function(response) {
-            console.log("HIIIII");
-            console.log("CHECK THE RESPONSE DATA", response.data);
             self.currentImage = response.data.modalImageData[0];
             self.commentData = response.data.commentData.reverse();
         });
-        // axios.get('/get-comments', this.selectedImage)
-        //     .then(function(response) {
-        //         console.log(response.data)
-        //     // self.commentData = response.data.reverse();
-        //
-        //     });
     }
-
 });
 
 
@@ -76,7 +62,6 @@ var app = new Vue({
     },
     methods: {
         uploadFile: function() {
-            console.log("Upload file working");
 
             var formData = new FormData();
             formData.append('file', this.formStuff.file);
@@ -87,42 +72,28 @@ var app = new Vue({
             axios.post('/upload-image', formData)
                 .then(result => {
                     if(result.data.success == true) {
-                        console.log("Checking for typeof object on upload-image", app.pagedata)
                         app.pagedata.unshift({
-                            // created_at:,
                             description: result.data.description,
-                            // id: ,
                             image: result.data.filename,
                             title: result.data.title,
                             username: result.data.username
                         });
                     }
-                    console.log("test the result", result.data.success);
-                    // receives res.json
-                    // console.log("response from server", result);
-                    // console.log()
                 });
         },
         chooseFile: function(e) {
             console.log("Choose file working");
             this.formStuff.file = e.target.files[0];
-
         },
+        //On click, take images id and set it to selectedImage, opening modal
         currentlySelected: function(id) {
             this.selectedImage = id;
-            console.log("Check this__________", this.selectedImage);
-
-
         },
     },
+    //When main is mounted, request images.
     mounted: function() {
         axios.get('/getimages').then(function(response) {
-            console.log(response.data.imageData[0].title);
-            console.log("LOOK GHERE!!!!", response.data.imageData);
             app.pagedata = response.data.imageData.reverse();
-
-            console.log(app.pagedata[0].image);
         });
-
     }
 });
