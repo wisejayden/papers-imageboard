@@ -1,6 +1,55 @@
+@font-face {
+    font-family: 'audrey';
+    src: url('/fonts/audrey-bold-webfont.woff2') format('woff2'),
+        url('/fonts/audrey-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'coco';
+    src: url('/fonts/coco-bold-webfont.woff2') format('woff2'),
+        url('/fonts/coco-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'elianto';
+    src: url('/fonts/elianto-regular-webfont.woff2') format('woff2'),
+        url('/fonts/elianto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'simplifica';
+    src: url('/fonts/simplifica-typeface-webfont.woff2') format('woff2'),
+        url('/fonts/simplifica-typeface-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
 h1 {
     text-align: center;
+    font-family: "simplifica";
+
 }
+body {
+    background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b54.png');
+}
+
+/* Best of
+http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
+/* http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b16.png */
+/* http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b18.png */
+/* http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b31.png */
+/* http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b45.png */
+/* http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b54.png */
+
 
 #imagelayout{
     display: flex;
@@ -15,7 +64,10 @@ h1 {
 /* flex-direction column
 height: 100vw; */
 
+
+
 #imagediv{
+    background-color: white;
     width: 30%;
     border: 2px solid black;
     padding: 5px;
