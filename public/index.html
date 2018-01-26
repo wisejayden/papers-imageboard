@@ -51,7 +51,12 @@
                             <input v-model="commentData.comment" type="text" placeholder="Comment">
                             <input v-model="commentData.username" type="text" placeholder="Username">
                             <button type="button" @click="submitComment">Submit</button>
-                            <button type="button" @click="getComments">Show Comments</button>
+                            <button v-if="comments.length===0" type="button" @click="getComments">Show Comments</button>
+                            <div v-if="comments.length>0">
+                                <button type="button" @click="comments=[]">Hide Comments</button>
+                            </div>
+
+
                         </div>
 
 
@@ -66,9 +71,10 @@
 
 
                         <div id="modalcommentscontainer">
-                            <div id="modalcomments" v-for="comments in commentData">
+                            <div id="modalcomments" v-for="comments in comments">
                                 <div id="everycomment">{{comments.comment}}</div>
                                 <div id="everyusername">{{comments.username}}</div>
+
                             </div>
 
                         </div>

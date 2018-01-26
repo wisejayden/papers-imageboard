@@ -6,7 +6,8 @@ Vue.component('big-image', {
             commentData: {
                 comment: '',
                 username: ''
-            }
+            },
+            comments: [],
         };
     },
     methods: {
@@ -21,7 +22,7 @@ Vue.component('big-image', {
         getComments: function() {
             axios.get('/get-comments/' + this.selectedImage)
                 .then((res) => {
-                    this.commentData = res.data.commentData;
+                    this.comments = res.data.commentData;
                 });
         },
         //Inside modal, make a post request to add comment data and then append to previous comments
@@ -39,7 +40,7 @@ Vue.component('big-image', {
                         this.commentData = res.data.comments.reverse();
                     }
                 });
-        },
+        }
     },
     template: '#modal-component',
     //When component is mounted, and modal is enlarged,  get image and comment data by id, then add to components data field.
