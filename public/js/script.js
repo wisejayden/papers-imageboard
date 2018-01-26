@@ -9,8 +9,6 @@ Vue.component('big-image', {
             }
         };
     },
-
-
     methods: {
         //On click, emits change to main, setting selectedImage ('id'), to null, hence closing the window.
         closeModal: function() {
@@ -21,7 +19,10 @@ Vue.component('big-image', {
         },
 
         getComments: function() {
-
+            axios.get('/get-comments/' + this.selectedImage)
+                .then((res) => {
+                    this.commentData = res.data.commentData;
+                });
         },
         //Inside modal, make a post request to add comment data and then append to previous comments
         submitComment: function() {
@@ -31,24 +32,22 @@ Vue.component('big-image', {
                 'username': this.commentData.username,
                 'id': this.currentImage.id
             })
-                .then((response) => {
+                .then((res) => {
                     console.log("/submit-comment");
-                    if(response.data.success == true) {
-                        this.commentData.unshift({
-                            comment: response.data.comment,
-                            username: response.data.username
-                        });
+                    if(res.data.success == true) {
+                        console.log("console log res.data", res.data);
+                        this.commentData = res.data.comments.reverse();
                     }
                 });
-        }
+        },
     },
     template: '#modal-component',
     //When component is mounted, and modal is enlarged,  get image and comment data by id, then add to components data field.
     mounted: function() {
         var self = this;
         axios.get('/getimages/' + this.selectedImage).then(function(response) {
+            console.log(response.data);
             self.currentImage = response.data.modalImageData[0];
-            self.commentData = response.data.commentData.reverse();
         });
     }
 });
@@ -102,7 +101,6 @@ var app = new Vue({
     mounted: function() {
         //Event listener to close modal on 'escape'
         document.addEventListener('keydown', function(e) {
-            console.log(e.keyCode);
             if (e.keyCode === 27) {
                 app.selectedImage = null;
             }

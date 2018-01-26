@@ -59,32 +59,41 @@ app.get('/getimages', function (req, res) {
 
 //Get comment data and image data by id and then return to modal
 app.get('/getimages/:id', function (req, res) {
-    getComments(req.params)
+    var id = req.params.id;
+    findImageData(id)
+        .then((results) => {
+            results.rows[0].image = hostWebsite + results.rows[0].image;
+            res.json({
+                success: true,
+                modalImageData: results.rows,
+                // commentData: commentData
+            });
+        })
+        .catch(() => {
+            res.json({
+                success: false
+            });
+        });
+
+});
+
+app.get('/get-comments/:id', function(req, res) {
+    console.log("received data");
     var id = req.params.id;
     getComments(id)
         .then((results) => {
             var commentData = results.rows;
-            findImageData(id)
-                .then((results) => {
-                    results.rows[0].image = hostWebsite + results.rows[0].image;
-
-                    res.json({
-                        success: true,
-                        modalImageData: results.rows,
-                        commentData: commentData
-                    });
-                })
-                .catch(() => {
-                    res.json({
-                        success: false
-                    });
-                });
+            res.json({
+                success: true,
+                commentData: commentData
+            });
         })
         .catch(() => {
-            console.log("got comments catch");
-        })
+            res.json({
+                success: false
+            });
+        });
 });
-
 
 //Save uploaded image to harddrive, then upload to website, once successful saveSubmission to database and return data to the client.
 app.post('/upload-image', uploader.single('file'), uploadToS3,  function(req, res) {
@@ -113,12 +122,14 @@ app.post('/upload-image', uploader.single('file'), uploadToS3,  function(req, re
 app.post('/submit-comment', function(req, res) {
     addComment(req.body.comment, req.body.username, req.body.id)
         .then(() => {
-            res.json({
-                success: true,
-                comment: req.body.comment,
-                username: req.body.username,
-                id: req.body.id
-            });
+            getComments(req.body.id)
+                .then((results) => {
+                    var returnedComments = results.rows;
+                    res.json({
+                        success: true,
+                        comments: returnedComments,
+                    });
+                });
         });
 });
 
