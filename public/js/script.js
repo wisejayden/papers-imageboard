@@ -25,26 +25,15 @@ Vue.component('big-image', {
                     //append data!!!
                     console.log("/submit-comment");
                     if(response.data.success == true) {
+                        console.log("Check submitted comment data", response.data)
 
-                        console.log("Checking for typeof object on upload-image", this.commentData)
 
-                        this.commentData = response.data.reverse();
 
-                        // console.log("Checking for current commentData", this.commentData)
-                        // this.commentData.push({
-                        //     comment: results.data.comment,
-                        //     username: results.data.username
-                        // });
-                        // console.log("Checking for current commentData second", this.commentData)
-
-                        // app.pagedata.unshift({
-                        //     // created_at:,
-                        //     description: result.data.description,
-                        //     // id: ,
-                        //     image: result.data.filename,
-                        //     title: result.data.title,
-                        //     username: result.data.username
-                        // });
+                        this.commentData.unshift({
+                            comment: response.data.comment,
+                            username: response.data.username
+                        });
+                        console.log("Checking for current commentData second", this.commentData);
                     }
 
                 });
@@ -56,7 +45,8 @@ Vue.component('big-image', {
         axios.get('/getimages/' + this.selectedImage).then(function(response) {
             console.log("HIIIII");
             console.log("CHECK THE RESPONSE DATA", response.data);
-            // self.currentImage = response.data.modalImageData[0];
+            self.currentImage = response.data.modalImageData[0];
+            self.commentData = response.data.commentData.reverse();
         });
         // axios.get('/get-comments', this.selectedImage)
         //     .then(function(response) {

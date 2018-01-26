@@ -62,6 +62,7 @@ app.get('/getimages/:id', function (req, res) {
     getComments(id)
         .then((results) => {
             var commentData = results.rows;
+            console.log("getComments results", commentData)
             findImageData(id)
                 .then((results) => {
                     results.rows[0].image = hostWebsite + results.rows[0].image;
@@ -132,14 +133,12 @@ app.post('/submit-comment', function(req, res) {
     console.log("Testing uploading comment req.body", req.body);
     addComment(req.body.comment, req.body.username, req.body.id)
         .then(() => {
-            console.log("Submitted comment into table");
-            getComments(req.body.id)
-                .then((results) => {
-                    res.json({
-                        success: true,
-                        results: results.rows
-                    });
-                });
+            res.json({
+                success: true,
+                comment: req.body.comment,
+                username: req.body.username,
+                id: req.body.id
+            });
         });
 });
 
