@@ -9,18 +9,31 @@
         <h1>|papers|</h1>
     </div>
     <div id="main">
-        <div>
-            <input v-model= "formStuff.title" type="text" placeholder="title">
-            <input v-model="formStuff.description" type="text" placeholder="description">
-            <input v-model="formStuff.username" type="text" placeholder="username">
-            <input type="file" name="file" v-on:change="chooseFile">
-            <button type="button" @click="uploadFile">Submit</button>
 
-        </div>
 
         <div id="herocontainer">
             <img id="heroimage" v-bind:src="heroimage.image">
             <button id="herobutton" type="button" @click="uploadOption">Upload Image</button>
+        </div>
+
+
+
+        <div v-if="clickedUpload" id="uploadform">
+            <div id="formtitle">
+                <p id="titletext">Title</p>
+                <input id="titleinput"v-model= "formStuff.title" type="text" placeholder="">
+            </div>
+            <div id="formdescription">
+                <p id="descriptiontext">Description</p>
+                <input id="descriptioninput" v-model="formStuff.description" type="text" placeholder="">
+            </div>
+            <div id="formusername">
+                <p id="usernametext">Username</p>
+                <input id="usernameinput" v-model="formStuff.username" type="text" placeholder="">
+            </div>
+                <input id="fileupload" type="file" name="file" size="200" v-on:change="chooseFile">
+                <button class="formsubmit" type="button" @click="uploadFile">Submit</button>
+
         </div>
 
         <div id="imagelayout">

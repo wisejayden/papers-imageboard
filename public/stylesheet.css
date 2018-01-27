@@ -74,7 +74,19 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 }
 
 
+.formsubmit {
+    padding: 12px 24px;
 
+    font-family: "simplifica";
+    text-align: center ;
+    vertical-align: center;
+    color: black;
+    border: 2px solid black;
+    background: none;
+    width: 100%;
+    margin: 0;
+
+}
 #herobutton {
   position: absolute;
   left: 50%;
@@ -85,7 +97,7 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 
   font-size: 1em;
   font-family: "simplifica";
-  tex-align: center ;
+  text-align: center ;
   vertical-align: center;
   color: white;
   border: 2px solid white;
@@ -93,13 +105,40 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 
   cursor: pointer;
 }
-#herobutton:hover,
+
 #herobutton:focus {
+     outline-width: 0;
+}
+#herobutton:hover {
   outline   : none;
   background:#FFF;
   color   :  rgba(0, 0, 0, 1);
 
 }
+
+#uploadform {
+
+    position: relative;
+    margin-top: 20px;
+    width: 200px;
+    height: 300px;
+    border: solid 2px black;
+    left: 50%;
+    font-family: "simplifica";
+    padding-left: 5px;
+    transform: translate(-50%);
+}
+
+#titletext {
+    margin-bottom: 4px;
+}
+#descriptiontext {
+    margin-bottom: 4px;
+}
+#usernametext {
+    margin-bottom: 4px;
+}
+
 
 #imagelayout{
     display: flex;

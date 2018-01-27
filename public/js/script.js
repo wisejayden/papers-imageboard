@@ -61,6 +61,7 @@ var app = new Vue({
         pagedata: '',
         heroimage: '',
         selectedImage: null,
+        clickedUpload: false,
         formStuff: {
             title: '',
             description: '',
@@ -99,6 +100,13 @@ var app = new Vue({
         currentlySelected: function(id) {
             this.selectedImage = id;
         },
+        uploadOption: function() {
+            if(this.clickedUpload == false) {
+                this.clickedUpload = true;
+            } else {
+                this.clickedUpload = false;
+            }
+        }
     },
     mounted: function() {
         //Event listener to close modal on 'escape'
