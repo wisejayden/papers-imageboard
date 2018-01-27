@@ -16,7 +16,11 @@
             <input type="file" name="file" v-on:change="chooseFile">
             <button type="button" @click="uploadFile">Submit</button>
 
+        </div>
 
+        <div id="herocontainer">
+            <img id="heroimage" v-bind:src="heroimage.image">
+            <button id="herobutton" type="button" @click="uploadOption">Upload Image</button>
         </div>
 
         <div id="imagelayout">
@@ -25,6 +29,9 @@
                     <strong id="imagetext">{{image.title}}</strong>
                 </div>
         </div>
+
+
+
 
         <big-image v-if="selectedImage"
          v-bind:selected-image="selectedImage" v-on:changed="selectedImage=null" v-on:commentsubmit="formStuff"></big-image>

@@ -40,6 +40,7 @@ h1 {
 
 }
 body {
+    margin: 0;
     background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b31.png');
 }
 
@@ -51,6 +52,54 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 /* http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b45.png */
 /* http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b54.png */
 
+#herocontainer {
+    margin-top: 30px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    display: relative;
+    top: 0;
+    height: 400px;
+
+
+
+}
+#heroimage {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+    /* overflow: hidden; */
+
+}
+
+
+
+#herobutton {
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+
+  padding: 12px 24px;
+
+  font-size: 1em;
+  font-family: "simplifica";
+  tex-align: center ;
+  vertical-align: center;
+  color: white;
+  border: 2px solid white;
+  background: none;
+
+  cursor: pointer;
+}
+#herobutton:hover,
+#herobutton:focus {
+  outline   : none;
+  background:#FFF;
+  color   :  rgba(0, 0, 0, 1);
+
+}
 
 #imagelayout{
     display: flex;

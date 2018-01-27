@@ -59,6 +59,7 @@ var app = new Vue({
     el: '#main',
     data: {
         pagedata: '',
+        heroimage: '',
         selectedImage: null,
         formStuff: {
             title: '',
@@ -107,7 +108,11 @@ var app = new Vue({
             }
         });
         axios.get('/getimages').then(function(response) {
-            app.pagedata = response.data.imageData.reverse();
+            var imageData = response.data.imageData;
+
+            app.heroimage = imageData[Math.floor(Math.random() * imageData.length)];
+
+            app.pagedata = imageData.reverse();
         });
     }
 });
