@@ -24,8 +24,8 @@
 
 @font-face {
     font-family: 'simplifica';
-    src: url('/fonts/simplifica-typeface-webfont.woff2') format('woff2'),
-        url('/fonts/simplifica-typeface-webfont.woff') format('woff');
+    src: url('/fonts/simplifica_typeface-webfont.woff2') format('woff2'),
+        url('/fonts/simplifica_typeface-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -74,19 +74,7 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 }
 
 
-.formsubmit {
-    padding: 12px 24px;
 
-    font-family: "simplifica";
-    text-align: center ;
-    vertical-align: center;
-    color: black;
-    border: 2px solid black;
-    background: none;
-    width: 100%;
-    margin: 0;
-
-}
 #herobutton {
   position: absolute;
   left: 50%;
@@ -118,26 +106,80 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 
 #uploadform {
 
-    position: relative;
-    margin-top: 20px;
-    width: 200px;
-    height: 300px;
-    border: solid 2px black;
+    position: absolute;
+    top: 180px;
+    width: 600px;
+    height: 250px;
+    border: solid 1px black;
     left: 50%;
     font-family: "simplifica";
-    padding-left: 5px;
     transform: translate(-50%);
+    color: black;
+    background-color: white;
+}
+
+#formheader {
+    top: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+
+}
+#formsubmit {
+    text-align: center;
+    vertical-align: center;
+    display: absolute;
+    right: 5px;
+    bottom: 5px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 60px;
+    padding-right: 60px;
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: "simplifica";
+    color: white;
+    background-color: #01acf4;
+    border-radius: 25px;
+    margin: 0;
+}
+.formfields {
+    padding-left: 5px;
+    display: inline-block;
 }
 
 #titletext {
     margin-bottom: 4px;
-}
-#descriptiontext {
-    margin-bottom: 4px;
+
 }
 #usernametext {
     margin-bottom: 4px;
 }
+#file
+#descriptiontext {
+    margin-bottom: 4px;
+}
+upload {
+    position: absolute;
+    overflow:auto;
+    padding-left: 5px;
+    padding-top: 20px;
+}
+/*
+label.fileuploadlabel input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+.fileuploadlabel {
+    border: 2px solid #AAA;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 2px;
+    background: #DDD;
+    display: inline-block;
+} */
 
 
 #imagelayout{

@@ -95,6 +95,8 @@ var app = new Vue({
         chooseFile: function(e) {
             console.log("Choose file working");
             this.formStuff.file = e.target.files[0];
+
+
         },
         //On click, take images id and set it to selectedImage, opening modal
         currentlySelected: function(id) {
