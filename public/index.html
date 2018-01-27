@@ -23,7 +23,7 @@
                     <p id="titletext">Title</p>
                     <input id="titleinput"v-model= "formStuff.title" type="text" placeholder="">
                 </div>
-                <div class="formfields">
+                <div class="formfields" id="usernametextdiv">
                     <p id="usernametext">Username</p>
                     <input id="usernameinput" v-model="formStuff.username" type="text" placeholder="">
                 </div>
@@ -33,6 +33,7 @@
                 </div>
 
                 <input id="fileupload" type="file" name="file" size="200" v-on:change="chooseFile">
+                <button id="cancel" type="button" @click="cancel">Cancel</button>
                 <button id="formsubmit" type="button" @click="uploadFile">Submit ></button>
 
             </div>
@@ -61,22 +62,39 @@
 
     <div id="modalback" @click="closeModal">
             <div class="modalwindow" @click="stopPropagation">
-                <div @click="closeModal" id="closemodal">X</div>
+                <div id="closemodal" @click="closeModal">x</div>
                 <div v-if="currentImage">
 
                     <div id="modaldiv">
                         <img id="modalimage" v-bind:src="currentImage.image">
 
 
+                        <div id="modaltext">
+                            <strong id="modaltitle">Title:    {{currentImage.title}}</strong>
+                            <p id="modaldescription">Description:    {{currentImage.description}}</p>
+                            <p id ="modaluser">Uploaded by {{currentImage.username}}</p>
+                        </div>
+
+
 
                         <div id="modalform">
-                            <p>Add a Comment!</p>
-                            <input v-model="commentData.comment" type="text" placeholder="Comment">
-                            <input v-model="commentData.username" type="text" placeholder="Username">
-                            <button type="button" @click="submitComment">Submit</button>
-                            <button v-if="comments.length===0" type="button" @click="getComments">Show Comments</button>
-                            <div v-if="comments.length>0">
-                                <button type="button" @click="comments=[]">Hide Comments</button>
+                        <p id="formheader">Add a Comment</p>
+                            <div class="modalformfields">
+                                <p id="addmodalcommenttext">Comment</p>
+                                <input v-model="commentData.comment" type="text" placeholder="Comment">
+                            </div>
+                            <div class="modalformfields" id="modalusernameformfield">
+                                <p id="addmodalusernametext">Username</p>
+                                <input v-model="commentData.username" type="text" placeholder="Username">
+                            </div>
+
+                            <button class="submitcomment" type="button" @click="submitComment">Submit</button>
+
+                            <div id="showhidecomments">
+                                <button v-if="comments.length===0" type="button" class="submitcomment" id="showcommentsbutton" @click="getComments">Show Comments</button>
+                                <div v-if="comments.length>0">
+                                    <button type="button" class="submitcomment" id="showcommentsbutton" @click="comments=[]">Hide Comments</button>
+                                </div>
                             </div>
 
 
@@ -85,15 +103,14 @@
 
 
 
-                        <div id="modaltext">
-                            <strong id="modaltitle">{{currentImage.title}}</strong>
-                            <p id="modaldescription">{{currentImage.description}}</p>
-                            <p id ="modaluser">Uploaded by {{currentImage.username}} on {{currentImage.created_at}}</p>
-                        </div>
 
 
 
-                        <div id="modalcommentscontainer">
+
+                        <div v-if="comments.length>0" id="modalcommentscontainer">
+
+                            <div id="modalcommentheader">Comments</div>
+                            <div id="modalusernameheader">Username</div>
                             <div id="modalcomments" v-for="comments in comments">
                                 <div id="everycomment">{{comments.comment}}</div>
                                 <div id="everyusername">{{comments.username}}</div>

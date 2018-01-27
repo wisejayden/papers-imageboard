@@ -83,6 +83,15 @@ var app = new Vue({
             axios.post('/upload-image', formData)
                 .then(result => {
                     if(result.data.success == true) {
+                        this.clickedUpload = false;
+                        this.formStuff = {
+                            title: '',
+                            description: '',
+                            username: '',
+                            file: null,
+                            comment: null,
+                            commentUsername: null
+                        };
                         app.pagedata.unshift({
                             description: result.data.description,
                             image: result.data.filename,
@@ -103,11 +112,11 @@ var app = new Vue({
             this.selectedImage = id;
         },
         uploadOption: function() {
-            if(this.clickedUpload == false) {
-                this.clickedUpload = true;
-            } else {
-                this.clickedUpload = false;
-            }
+            this.clickedUpload = true;
+
+        },
+        cancel: function() {
+            this.clickedUpload = false;
         }
     },
     mounted: function() {

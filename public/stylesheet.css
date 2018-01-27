@@ -30,6 +30,30 @@
     font-style: normal;
 
 }
+@font-face {
+    font-family: 'skinny';
+    src: url('/fonts/skinny-regular-webfont.woff2') format('woff2'),
+        url('/fonts/skinny-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'pops';
+    src: url('/fonts/pops_08_regular-webfont.woff2') format('woff2'),
+        url('/fonts/pops_08_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'whatever';
+    src: url('/fonts/whatever_it_takes-webfont.woff2') format('woff2'),
+        url('/fonts/whatever_it_takes-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 
 
@@ -78,12 +102,12 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 #herobutton {
   position: absolute;
   left: 50%;
-  top: 60%;
-  transform: translate(-50%, -50%);
+  top: 385px;
+  transform: translate(-50%);
 
   padding: 12px 24px;
 
-  font-size: 1em;
+  font-size: 1.6em;
   font-family: "simplifica";
   text-align: center ;
   vertical-align: center;
@@ -106,13 +130,14 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 
 #uploadform {
 
-    position: absolute;
+    position: fixed;
     top: 180px;
     width: 600px;
-    height: 250px;
+    height: 300px;
     border: solid 1px black;
     left: 50%;
     font-family: "simplifica";
+    font-size: 1.2em;
     transform: translate(-50%);
     color: black;
     background-color: white;
@@ -120,22 +145,28 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 
 #formheader {
     top: 0;
+    padding-top: 3px;
+    padding-bottom: 3px;
     width: 100%;
     background-color: black;
     color: white;
     text-align: center;
+    margin-bottom: 0;
 
+}
+input {
+    width: 200px;
 }
 #formsubmit {
     text-align: center;
     vertical-align: center;
     display: absolute;
-    right: 5px;
-    bottom: 5px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 60px;
-    padding-right: 60px;
+    right: 50px;
+    bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 55px;
+    padding-right: 55px;
     position: absolute;
     font-size: 1em;
     font-weight: bold;
@@ -145,9 +176,47 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
     border-radius: 25px;
     margin: 0;
 }
+
+#formsubmit:hover {
+    outline   : none;
+    background: #FFF;
+    color   :  #01acf4;
+    border: 1px solid #01acf4;
+    cursor: pointer;
+
+}
+
+#cancel {
+    text-align: center;
+    vertical-align: center;
+    display: absolute;
+    left: 50px;
+    bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 55px;
+    padding-right: 55px;
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: "simplifica";
+    color: black;
+    background-color: white
+    border: solid 1px black;
+    border-radius: 25px;
+    margin: 0;
+    cursor: pointer;
+
+}
 .formfields {
-    padding-left: 5px;
+    margin-top: 25px;
+    padding-left: 50px;
     display: inline-block;
+}
+#usernametextdiv {
+    position: absolute;
+    right: 50px;
+    /* margin-left: 20%; */
 }
 
 #titletext {
@@ -157,16 +226,29 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
 #usernametext {
     margin-bottom: 4px;
 }
-#file
 #descriptiontext {
     margin-bottom: 4px;
 }
-upload {
+.descriptionfield {
+    padding-left: 50px;
+}
+#descriptioninput {
+    width: 495px;
+}
+#fileupload {
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translate(-50%);
+    margin-bottom: 10px;
+}
+
+/* upload {
     position: absolute;
     overflow:auto;
     padding-left: 5px;
     padding-top: 20px;
-}
+} */
 /*
 label.fileuploadlabel input[type="file"] {
     position: fixed;
@@ -203,12 +285,31 @@ height: 100vw; */
     width: 30%;
     border: 1px solid rgb(193, 186, 187);
     padding: 10px 10px 30px 10px;
-    margin: 10px 0px 10px 0px;
+    margin: 20px 0px 20px 0px;
 }
-
+/*
 #imagediv:nth-child(even) {
-    background-color: black;
+    -webkit-transform: rotate(-1.5deg);
+       -moz-transform: rotate(-1.5deg);
+        -ms-transform: rotate(-1.5deg);
+         -o-transform: rotate(-1.5deg);
+            transform: rotate(-1.5deg);
 }
+#imagediv:nth-child(odd) {
+    -webkit-transform: rotate(1.5deg);
+       -moz-transform: rotate(1.5deg);
+        -ms-transform: rotate(1.5deg);
+         -o-transform: rotate(1.5deg);
+            transform: rotate(1.5deg);
+}
+#imagediv:nth-child(4) {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+} */
+
 
 #singleimages{
     width: 100%;
@@ -217,7 +318,12 @@ height: 100vw; */
 #imagetext {
     text-align: center;
     display: block;
-    margin: 0 auto;
+    margin-top: 10px;
+    font-family: "skinny";
+    font-size: 2em;
+    letter-spacing: 2px;
+
+    /* font-weight: bold; */
 }
 
 
@@ -233,32 +339,31 @@ height: 100vw; */
 
 
 .modalwindow {
-    position: absolute;
+    position: fixed;
     width: 80%;
     height: 80%;
     top: 10%;
     left:10%;
-    background: rgb(247, 47, 107);
-    padding: 5px;
+    background-image: url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b31.png');
     border: 2px solid black;
+    padding-bottom: 0;
 }
 
 #closemodal {
     position: absolute;
     left: 96%;
-    background: rgba(255, 255, 255, 0.6);
-    border: solid black 2px;
+    background: none;
     padding: 5px;
+    font-size: 1.5em;
 }
 #modaldiv {
-    position: fixed;
-    width: 60%;
-    height: 65%;
-    border: solid black 2px;
+    position: absolute;
+    width: 80%;
+    height: 95%;
     margin-left: 10%;
-    margin-top: 5%;
-    padding: 5px;
-    background: rgb(245, 132, 166);
+    padding-top: 20px;
+
+    background: none;
     overflow: scroll;
 
 
@@ -273,4 +378,87 @@ height: 100vw; */
 #modaltext {
     padding-top: 10px;
     text-align: center;
+    font-family: 'simplifica';
+    font-size: 2em;
+}
+
+#modalform {
+    font-family: "simplifica";
+    position: relative;
+}
+
+.modalformfields {
+    display: inline-block;
+    padding-left: 150px
+}
+#modalusernameformfield {
+    position: absolute;
+    right: 150px;
+}
+
+.submitcomment {
+    text-align: center;
+    vertical-align: center;
+    display: relative;
+    right: 150px;
+    transform: translate(-50%);
+    top: 110px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 55px;
+    padding-right: 55px;
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: "simplifica";
+    color: white;
+    background-color: #01acf4;
+    border-radius: 25px;
+    margin-bottom: 20px
+}
+.submitcomment:hover {
+    outline   : none;
+    background: none;
+    color   :  #01acf4;
+    border: 1px solid #01acf4;
+    cursor: pointer;
+
+}
+
+.submitcomment:focus {
+     outline-width: 0;
+}
+#showcommentsbutton {
+    color: #01acf4;
+    background: none;
+    border: 1px solid #01acf4;
+    left: 150px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+#showcommentsbutton:hover {
+    outline   : none;
+    background: #01acf4;
+    color   :  white;
+    cursor: pointer;
+
+}
+#modalcommentscontainer {
+    font-family: 'simplifica';
+    margin-top: 100px;
+    display: inline-block;
+}
+
+#modalcommentheader {
+    font-size: 3em;
+    text-decoration: underline;
+    display: inline-block;
+
+}
+#modalusernameheader {
+    font-size: 3em;
+    text-decoration: underline;
+    display: inline-block;
+    margin-left: 200px;
 }
