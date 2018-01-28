@@ -365,6 +365,7 @@ height: 100vw; */
 
     background: none;
     overflow: scroll;
+    overflow-x: visible;
 
 
 
@@ -385,24 +386,52 @@ height: 100vw; */
 #modalform {
     font-family: "simplifica";
     position: relative;
+    width: 70%;
+    left: 15%;
+    margin-bottom: 20px;
 }
 
 .modalformfields {
-    display: inline-block;
-    padding-left: 150px
+    display: block;
+    padding-left: 50%;
+    transform: translate(-50%);
+
 }
 #modalusernameformfield {
-    position: absolute;
-    right: 150px;
+}
+
+textarea {
+  display : block;
+
+  width   : 340px;
+  height  : 100px;
+
+  resize  : none;
+  overflow: auto;
+}
+#addmodalusernametext {
+    margin-bottom: 4px;
+}
+#addmodalcommenttext {
+    margin-bottom: 4px;
+}
+
+#falsecommentsusername {
+    color: #95372E;
+    margin-top: 4px;
+
+}
+#falsecommentsusername {
+    color: #95372E;
+    margin-top: 4px;
 }
 
 .submitcomment {
     text-align: center;
     vertical-align: center;
-    display: relative;
-    right: 150px;
-    transform: translate(-50%);
-    top: 110px;
+    display: block;
+    margin-top: 5px;
+    /* transform: translate(-50%); */
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 55px;
@@ -444,16 +473,53 @@ height: 100vw; */
     cursor: pointer;
 
 }
+
+#commentsheader {
+    display: inline-flex;
+}
+
+#hidecommentsbutton {
+    text-align: center;
+    vertical-align: baseline;
+    display: block;
+    margin-top: 10px;
+    /* transform: translate(-50%); */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: absolute;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: "simplifica";
+    color: #01acf4;
+    border: none;
+    background: none;
+    border-radius: 25px;
+    margin-bottom: 20px
+}
+
+#hidecommentsbutton:hover {
+    outline   : none;
+    background: #01acf4;
+    color   :  white;
+    cursor: pointer;
+    /* background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b31.png'); */
+
+}
 #modalcommentscontainer {
     font-family: 'simplifica';
     margin-top: 100px;
     display: inline-block;
+    width: 70%;
+    margin-left: 15%;
 }
 
 #modalcommentheader {
     font-size: 3em;
-    text-decoration: underline;
     display: inline-block;
+    margin-bottom: 20px;
+
 
 }
 #modalusernameheader {
@@ -461,4 +527,29 @@ height: 100vw; */
     text-decoration: underline;
     display: inline-block;
     margin-left: 200px;
+}
+#modalcommentscontainer {
+    margin-bottom: 20px;
+}
+
+#modalcomments {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+#modalcomments:nth-child(even) {
+   width:100%;
+   background: linear-gradient( rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) ), url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b31.png');
+   background-position:center top;
+
+}
+#everycomment {
+    font-style: italic;
+    display: block;
+    font-size: 1.2em;
+}
+
+#everyusername {
+    display: block;
+    color: #95372E;
+    font-size: 1.5em;
 }

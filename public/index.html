@@ -79,22 +79,22 @@
 
                         <div id="modalform">
                         <p id="formheader">Add a Comment</p>
+                        <div class="modalformfields" id="modalusernameformfield">
+                            <p id="addmodalusernametext">Username</p>
+                            <input v-model="commentData.username" type="text" placeholder="">
+                            <p v-if="falseCommentsUsername" id="falsecommentsusername">Please enter a username</p>
+                        </div>
                             <div class="modalformfields">
                                 <p id="addmodalcommenttext">Comment</p>
-                                <input v-model="commentData.comment" type="text" placeholder="Comment">
+                                <textarea v-model="commentData.comment" type="text" placeholder=""></textarea>
+                                <p v-if="falseCommentsComment" id="falsecommentsusername">Please enter a comment</p>
                             </div>
-                            <div class="modalformfields" id="modalusernameformfield">
-                                <p id="addmodalusernametext">Username</p>
-                                <input v-model="commentData.username" type="text" placeholder="Username">
-                            </div>
+
 
                             <button class="submitcomment" type="button" @click="submitComment">Submit</button>
 
                             <div id="showhidecomments">
                                 <button v-if="comments.length===0" type="button" class="submitcomment" id="showcommentsbutton" @click="getComments">Show Comments</button>
-                                <div v-if="comments.length>0">
-                                    <button type="button" class="submitcomment" id="showcommentsbutton" @click="comments=[]">Hide Comments</button>
-                                </div>
                             </div>
 
 
@@ -109,12 +109,15 @@
 
                         <div v-if="comments.length>0" id="modalcommentscontainer">
 
-                            <div id="modalcommentheader">Comments</div>
-                            <div id="modalusernameheader">Username</div>
+                            <div id="commentsheader">
+                                <div id="modalcommentheader">Comments</div>
+                                <div v-if="comments.length>0">
+                                    <button type="button" id="hidecommentsbutton" @click="comments=[]">Hide Comments</button>
+                                </div>
+                            </div>
                             <div id="modalcomments" v-for="comments in comments">
-                                <div id="everycomment">{{comments.comment}}</div>
-                                <div id="everyusername">{{comments.username}}</div>
-
+                                <div id="everyusername"> {{comments.username}}</div>
+                                <div id="everycomment">"{{comments.comment}}"</div>
                             </div>
 
                         </div>

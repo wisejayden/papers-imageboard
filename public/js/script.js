@@ -8,6 +8,8 @@ Vue.component('big-image', {
                 username: ''
             },
             comments: [],
+            falseCommentsUsername: false,
+            falseCommentsComment: false
         };
     },
     methods: {
@@ -22,24 +24,41 @@ Vue.component('big-image', {
         getComments: function() {
             axios.get('/get-comments/' + this.selectedImage)
                 .then((res) => {
-                    this.comments = res.data.commentData;
+                    this.comments = res.data.commentData.reverse();
                 });
         },
         //Inside modal, make a post request to add comment data and then append to previous comments
         submitComment: function() {
             console.log("Comment submitted");
-            axios.post('/submit-comment', {
-                'comment': this.commentData.comment,
-                'username': this.commentData.username,
-                'id': this.currentImage.id
-            })
-                .then((res) => {
-                    console.log("/submit-comment");
-                    if(res.data.success == true) {
-                        console.log("console log res.data", res.data);
-                        this.commentData = res.data.comments.reverse();
-                    }
-                });
+            this.falseCommentsUsername = false;
+            this.falseCommentsComment = false;
+            if(this.commentData.username.length === 0 && this.commentData.comment.length === 0) {
+                this.falseCommentsUsername = true;
+                this.falseCommentsComment = true;
+            } else if (this.commentData.username.length === 0) {
+                this.falseCommentsUsername = true;
+            } else if (this.commentData.comment.length === 0) {
+                this.falseCommentsComment = true;
+            }else {
+                axios.post('/submit-comment', {
+                    'comment': this.commentData.comment,
+                    'username': this.commentData.username,
+                    'id': this.currentImage.id
+                })
+                    .then((res) => {
+                        console.log("/submit-comment");
+                        if(res.data.success == true) {
+                            console.log("console log res.data", res.data);
+                            this.comments = res.data.comments.reverse();
+                            this.commentData = {
+                                comment: '',
+                                username: ''
+                            };
+                        }
+                    });
+            }
+
+
         }
     },
     template: '#modal-component',
