@@ -8,8 +8,8 @@ Vue.component('big-image', {
                 username: ''
             },
             comments: [],
-            falseCommentsUsername: false,
-            falseCommentsComment: false
+            errorModalUsername: false,
+            errorModalComment: false
         };
     },
     methods: {
@@ -30,15 +30,17 @@ Vue.component('big-image', {
         //Inside modal, make a post request to add comment data and then append to previous comments
         submitComment: function() {
             console.log("Comment submitted");
-            this.falseCommentsUsername = false;
-            this.falseCommentsComment = false;
+
+
+            this.errorModalUsername = false;
+            this.errorModalComment = false;
             if(this.commentData.username.length === 0 && this.commentData.comment.length === 0) {
-                this.falseCommentsUsername = true;
-                this.falseCommentsComment = true;
+                this.errorModalUsername = true;
+                this.errorModalComment = true;
             } else if (this.commentData.username.length === 0) {
-                this.falseCommentsUsername = true;
+                this.errorModalUsername = true;
             } else if (this.commentData.comment.length === 0) {
-                this.falseCommentsComment = true;
+                this.errorModalComment = true;
             }else {
                 axios.post('/submit-comment', {
                     'comment': this.commentData.comment,
@@ -87,11 +89,40 @@ var app = new Vue({
             username: '',
             file: null,
             comment: null,
-            commentUsername: null
-        }
+            commentUsername: null,
+        },
+        errorUploadFile: false,
+        errorUploadTitle: false,
+        errorUploadDescription: false,
+        errorUploadUsername: false,
+        errorFileSize: false
     },
     methods: {
         uploadFile: function() {
+            this.errorUploadFile = false;
+            this.errorUploadTitle = false;
+            this.errorUploadDescription =  false;
+            this.errorUploadUsername = false;
+
+            var incorrectInfo = false;
+
+            if(this.formStuff.file === null) {
+                this.errorUploadFile = true;
+                incorrectInfo = true;
+            }
+            if(this.formStuff.title.length === 0) {
+                this.errorUploadTitle = true;
+                incorrectInfo = true;
+            }
+            if(this.formStuff.description.length === 0) {
+                this.errorUploadDescription =  true;
+                incorrectInfo = true;
+            }
+            if(this.formStuff.username.length === 0) {
+                this.errorUploadUsername = true;
+                incorrectInfo = true;
+            }
+
 
             var formData = new FormData();
             formData.append('file', this.formStuff.file);
@@ -99,26 +130,34 @@ var app = new Vue({
             formData.append('description', this.formStuff.description);
             formData.append('username', this.formStuff.username);
 
-            axios.post('/upload-image', formData)
-                .then(result => {
-                    if(result.data.success == true) {
-                        this.clickedUpload = false;
-                        this.formStuff = {
-                            title: '',
-                            description: '',
-                            username: '',
-                            file: null,
-                            comment: null,
-                            commentUsername: null
-                        };
-                        app.pagedata.unshift({
-                            description: result.data.description,
-                            image: result.data.filename,
-                            title: result.data.title,
-                            username: result.data.username
-                        });
-                    }
-                });
+            if (incorrectInfo === true) {
+                console.log('error filling out data');
+            } else {
+                this.clickedUpload = false;
+                axios.post('/upload-image', formData)
+                    .then(result => {
+                        if(result.data.success == true) {
+                            this.clickedUpload = false;
+                            this.formStuff = {
+                                title: '',
+                                description: '',
+                                username: '',
+                                file: null,
+                                comment: null,
+                                commentUsername: null
+                            };
+                            app.pagedata.unshift({
+                                description: result.data.description,
+                                image: result.data.filename,
+                                title: result.data.title,
+                                username: result.data.username
+                            });
+                        } else {
+                            this.errorFileSize = true;
+                        }
+                    });
+            }
+
         },
         chooseFile: function(e) {
             console.log("Choose file working");
@@ -136,6 +175,19 @@ var app = new Vue({
         },
         cancel: function() {
             this.clickedUpload = false;
+            this.errorUploadFile = false;
+            this.errorUploadTitle = false;
+            this.errorUploadDescription =  false;
+            this.errorUploadUsername = false;
+
+            this.formStuff = {
+                title: '',
+                description: '',
+                username: '',
+                file: null,
+                comment: null,
+                commentUsername: null,
+            };
         }
     },
     mounted: function() {

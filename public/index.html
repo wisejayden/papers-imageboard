@@ -22,23 +22,30 @@
                 <div class="formfields">
                     <p id="titletext">Title</p>
                     <input id="titleinput"v-model= "formStuff.title" type="text" placeholder="">
+                    <p v-if="errorUploadTitle" class="errorform">Please enter a title</p>
                 </div>
                 <div class="formfields" id="usernametextdiv">
                     <p id="usernametext">Username</p>
                     <input id="usernameinput" v-model="formStuff.username" type="text" placeholder="">
+                    <p v-if="errorUploadUsername" class="errorform">Please enter a username</p>
                 </div>
                 <div class="descriptionfield">
                     <p id="descriptiontext">Description</p>
                     <input id="descriptioninput" v-model="formStuff.description" type="text" placeholder="">
                 </div>
+                <p v-if="errorUploadDescription" class="errorform" id="errordescription">Please enter a description</p>
+                <div id="fileuploadcontainer">
+                    <input id="fileupload" type="file" name="file" size="200" v-on:change="chooseFile">
+                    <p v-if="errorUploadFile" class="errorform" id="errorupload">Please upload an image</p>
+                    <p v-if="errorFileSize" class="errorform" id="errorupload">There was a issue with uploading your image, please make sure that it is 2MB or less.</p>
+                </div>
 
-                <input id="fileupload" type="file" name="file" size="200" v-on:change="chooseFile">
                 <button id="cancel" type="button" @click="cancel">Cancel</button>
                 <button id="formsubmit" type="button" @click="uploadFile">Submit ></button>
 
             </div>
             <button v-else="clickedUpload" id="herobutton" type="button" @click="uploadOption">Upload Image</button>
-        </div>
+            </div>
 
         <div id="imagelayout">
                 <div id="imagediv" v-for="image in pagedata">
@@ -82,12 +89,12 @@
                         <div class="modalformfields" id="modalusernameformfield">
                             <p id="addmodalusernametext">Username</p>
                             <input v-model="commentData.username" type="text" placeholder="">
-                            <p v-if="falseCommentsUsername" id="falsecommentsusername">Please enter a username</p>
+                            <p v-if="errorModalUsername" id="falsecommentsusername">Please enter a username</p>
                         </div>
                             <div class="modalformfields">
                                 <p id="addmodalcommenttext">Comment</p>
                                 <textarea v-model="commentData.comment" type="text" placeholder=""></textarea>
-                                <p v-if="falseCommentsComment" id="falsecommentsusername">Please enter a comment</p>
+                                <p v-if="errorModalComment" id="falsecommentsusername">Please enter a comment</p>
                             </div>
 
 

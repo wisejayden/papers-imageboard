@@ -60,7 +60,7 @@
 h1 {
     text-align: center;
     font-family: "coco";
-    font-size: 3em;
+    font-size: 3.5em;
 
 }
 body {
@@ -114,6 +114,8 @@ http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b9.png */
   color: white;
   border: 2px solid white;
   background: none;
+  letter-spacing: 2px;
+
 
   cursor: pointer;
 }
@@ -185,6 +187,9 @@ input {
     cursor: pointer;
 
 }
+#formsubmit:focus {
+     outline-width: 0;
+}
 
 #cancel {
     text-align: center;
@@ -208,8 +213,11 @@ input {
     cursor: pointer;
 
 }
+#cancel:focus {
+     outline-width: 0;
+}
 .formfields {
-    margin-top: 25px;
+    margin-top: 35px;
     padding-left: 50px;
     display: inline-block;
 }
@@ -220,27 +228,47 @@ input {
 }
 
 #titletext {
-    margin-bottom: 4px;
+    margin-bottom: 0px;
 
 }
 #usernametext {
-    margin-bottom: 4px;
+    margin-bottom: 0px;
 }
 #descriptiontext {
-    margin-bottom: 4px;
+    margin-bottom: 0px;
 }
 .descriptionfield {
+    position: absolute;
     padding-left: 50px;
+    bottom: 90px;
+
 }
 #descriptioninput {
     width: 495px;
+
 }
+#errordescription {
+    position: absolute;
+    padding-left: 50px;
+    bottom: 55px;
+}
+
 #fileupload {
     position: absolute;
     top: 65px;
     left: 50%;
     transform: translate(-50%);
     margin-bottom: 10px;
+}
+#errorupload {
+    position: absolute;
+    top: 82px;
+    left: 34%;
+}
+.errorform {
+    color: #95372E;
+    margin-top: 4px;
+    font-size: 0.8em;
 }
 
 /* upload {
@@ -474,6 +502,10 @@ textarea {
 
 }
 
+#showcommentsbutton:focus {
+     outline-width: 0;
+}
+
 #commentsheader {
     display: inline-flex;
 }
@@ -507,6 +539,11 @@ textarea {
     /* background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('http://supernovathemes.com/wp-content/themes/supernovathemes/images/bg/b31.png'); */
 
 }
+
+#hidecommentsbutton:focus {
+     outline-width: 0;
+}
+
 #modalcommentscontainer {
     font-family: 'simplifica';
     margin-top: 100px;
